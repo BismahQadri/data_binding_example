@@ -1,14 +1,21 @@
 package com.e.databinding
 
+import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.e.databinding.databinding.ItemMainBinding
 
 class MainAdapter(private val userList : List<User>) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent,false))
+        val binding : ItemMainBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.item_main, parent, false
+        )
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -20,12 +27,9 @@ class MainAdapter(private val userList : List<User>) : RecyclerView.Adapter<Main
     }
 
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        private val name = view.findViewById<TextView>(R.id.tv_name)
-        private val weight = view.findViewById<TextView>(R.id.tv_weight)
+    class ViewHolder(private val binding: ItemMainBinding): RecyclerView.ViewHolder(binding.root) {
         fun bindTo(user: User) {
-            name.text = user.name
-            weight.text = user.weight
+            binding.userModel = user
         }
 
     }
