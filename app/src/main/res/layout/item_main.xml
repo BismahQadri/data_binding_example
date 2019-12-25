@@ -3,10 +3,12 @@
 
     <data>
         <variable name="userModel" type="com.e.databinding.User"/>
+        <variable name="listener" type="android.view.View.OnClickListener"/>
     </data>
 <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{listener}"
         android:orientation="vertical">
     <TextView
             android:id="@+id/tv_name"
